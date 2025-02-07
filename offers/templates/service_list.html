@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Services</h2>
+<a href="{% url 'service_create' %}" class="btn btn-primary">New Service</a>
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Service Rate</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for service in services %}
+        <tr>
+            <td>{{ service.name }}</td>
+            <td>{{ service.description }}</td>
+            <td>{{ service.service_rate }}€</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
