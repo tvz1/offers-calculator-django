@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Offers</h2>
+<a href="{% url 'offer_create' %}" class="btn btn-primary">New Offer</a>
+<ul class="list-group mt-3">
+    {% for offer in offers %}
+    <li class="list-group-item">
+        <a href="{% url 'offer_detail' offer.id %}">Offer #{{ offer.id }} for {{ offer.customer }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

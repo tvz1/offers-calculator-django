@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Offer #{{ offer.id }} for {{ offer.customer }}</h2>
+<p><strong>Date Created:</strong> {{ offer.date_created }}</p>
+<p><strong>Valid Until:</strong> {{ offer.valid_until }}</p>
+<p><strong>Total Cost:</strong> ${{ offer.total_cost }}</p>
+
+<h3>Items in this Offer</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Product / Service / Raw Material</th>
+            <th>Quantity</th>
+            <th>Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr>
+            <td>
+                {% if item.product %}
+                    {{ item.product.name }}
+                {% elif item.service %}
+                    {{ item.service.name }}
+                {% elif item.raw_material %}
+                    {{ item.raw_material.name }}
+                {% else %}
+                    N/A
+                {% endif %}
+            </td>
+            <td>{{ item.quantity }}</td>
+            <td>${{ item.cost }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'offer_list' %}" class="btn btn-secondary">Back to Offers</a>
+{% endblock %}

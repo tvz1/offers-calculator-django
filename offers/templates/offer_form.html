@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Create Offer</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <h3>Offer Items</h3>
+    {{ formset.management_form }}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Service</th>
+                <th>Raw Material</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for form in formset %}
+            <tr>
+                <td>{{ form.product }}</td>
+                <td>{{ form.service }}</td>
+                <td>{{ form.raw_material }}</td>
+                <td>{{ form.quantity }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
+<a href="{% url 'offer_list' %}" class="btn btn-secondary mt-3">Back to Offers</a>
+{% endblock %}
